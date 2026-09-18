@@ -17,6 +17,10 @@
   --color-quiz-dark: #4a148c;
   --color-correct: #2e7d32;
   --color-incorrect: #b3261e;
+  --color-iv-highlight: #0d3f91;
+  --color-iv-highlight-bg: rgba(21, 84, 214, 0.16);
+  --color-dv-highlight: #8e1c1c;
+  --color-dv-highlight-bg: rgba(198, 40, 40, 0.16);
   --font-base-size: 19px;
   --radius: 10px;
 }
@@ -241,6 +245,60 @@ button:focus {
   padding: 3px 10px;
   border-radius: 999px;
   margin-bottom: 14px;
+}
+
+/* ---------------------------------------------------------- */
+/* Color-coded IV/DV highlighting (main generator view only)   */
+/* ---------------------------------------------------------- */
+
+.highlight-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  font-size: 0.85em;
+  color: #444;
+  margin: 0 0 10px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  flex: 0 0 auto;
+}
+
+.legend-swatch.legend-iv {
+  background: var(--color-iv-highlight-bg);
+  border: 2px solid var(--color-iv-highlight);
+}
+
+.legend-swatch.legend-dv {
+  background: var(--color-dv-highlight-bg);
+  border: 2px solid var(--color-dv-highlight);
+}
+
+.hl-iv {
+  color: var(--color-iv-highlight);
+  background: var(--color-iv-highlight-bg);
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+.hl-dv {
+  color: var(--color-dv-highlight);
+  background: var(--color-dv-highlight-bg);
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 4px;
 }
 
 .page-footer {
