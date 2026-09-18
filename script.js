@@ -9,16 +9,19 @@
   const generateBtn = document.getElementById("generateBtn");
   const readAloudBtn = document.getElementById("readAloudBtn");
   const copyBtn = document.getElementById("copyBtn");
+  const revealBtn = document.getElementById("revealBtn");
   const fontSmallerBtn = document.getElementById("fontSmallerBtn");
   const fontLargerBtn = document.getElementById("fontLargerBtn");
   const scenarioOutput = document.getElementById("scenarioOutput");
+  const revealExplanation = document.getElementById("revealExplanation");
 
   // ---- Safety check: make sure the expected page elements exist ----
-  if (!topicSelect || !generateBtn || !scenarioOutput) {
+  if (!topicSelect || !generateBtn || !scenarioOutput || !revealBtn || !revealExplanation) {
     console.error(
       "Biology Scenario Generator: one or more expected elements " +
-      "(#topicSelect, #generateBtn, #scenarioOutput) were not found. " +
-      "Check that index.html was not accidentally modified."
+      "(#topicSelect, #generateBtn, #scenarioOutput, #revealBtn, " +
+      "#revealExplanation) were not found. Check that index.html was not " +
+      "accidentally modified or only partially uploaded."
     );
     return;
   }
@@ -42,6 +45,8 @@
   }
 
   let currentText = "";
+  let currentScenario = null;
+  let isRevealed = false;
   // Track the last shown index per topic so we try not to repeat
   // the same scenario twice in a row for the same topic.
   const lastIndexByTopic = {};
@@ -127,13 +132,18 @@
   }
 
   // ---- Display a scenario ----
+  // Scenarios always start in PLAIN text (no color-coding) so students can
+  // try to spot the IV and DV themselves first. Colors + the explanation
+  // only appear after they click "Reveal IV & DV" (see revealAnswer below).
   function showScenario() {
     const topic = topicSelect.value;
     if (!topic) {
       return;
     }
     const scenario = pickScenario(topic);
+    currentScenario = scenario;
     currentText = scenario.text;
+    isRevealed = false;
 
     scenarioOutput.innerHTML = "";
 
@@ -142,7 +152,8 @@
     label.textContent = topic;
 
     const paragraph = document.createElement("p");
-    paragraph.innerHTML = buildHighlightedHTML(scenario);
+    paragraph.id = "scenarioParagraph";
+    paragraph.textContent = currentText;
 
     scenarioOutput.appendChild(label);
     scenarioOutput.appendChild(document.createElement("br"));
@@ -151,9 +162,52 @@
     readAloudBtn.disabled = false;
     copyBtn.disabled = false;
 
+    const canReveal = (Array.isArray(scenario.ivHighlights) && scenario.ivHighlights.length > 0) ||
+      (Array.isArray(scenario.dvHighlights) && scenario.dvHighlights.length > 0);
+    revealBtn.disabled = !canReveal;
+    revealBtn.textContent = "👀 Reveal IV & DV";
+
+    revealExplanation.hidden = true;
+    revealExplanation.innerHTML =
+      '<p><span class="hl-iv">Independent Variable (IV)</span>: <span id="revealIvText"></span></p>' +
+      '<p><span class="hl-dv">Dependent Variable (DV)</span>: <span id="revealDvText"></span></p>' +
+      '<p id="revealExplanationText" class="reveal-explanation-text"></p>';
+
     // Stop any speech that might already be playing before showing new text.
     if (window.speechSynthesis) {
       window.speechSynthesis.cancel();
+    }
+  }
+
+  // ---- Toggle the color-coded reveal + explanation ----
+  function revealAnswer() {
+    if (!currentScenario) {
+      return;
+    }
+    const paragraph = document.getElementById("scenarioParagraph");
+    if (!paragraph) {
+      return;
+    }
+
+    isRevealed = !isRevealed;
+
+    if (isRevealed) {
+      paragraph.innerHTML = buildHighlightedHTML(currentScenario);
+
+      const ivTextEl = document.getElementById("revealIvText");
+      const dvTextEl = document.getElementById("revealDvText");
+      const explanationEl = document.getElementById("revealExplanationText");
+      if (ivTextEl) { ivTextEl.textContent = currentScenario.iv || ""; }
+      if (dvTextEl) { dvTextEl.textContent = currentScenario.dv || ""; }
+      if (explanationEl) { explanationEl.textContent = currentScenario.explanation || ""; }
+
+      revealExplanation.hidden = false;
+      revealBtn.textContent = "🙈 Hide Reveal";
+      revealExplanation.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    } else {
+      paragraph.textContent = currentText;
+      revealExplanation.hidden = true;
+      revealBtn.textContent = "👀 Reveal IV & DV";
     }
   }
 
@@ -232,6 +286,7 @@
   generateBtn.addEventListener("click", showScenario);
   readAloudBtn.addEventListener("click", readAloud);
   copyBtn.addEventListener("click", copyText);
+  revealBtn.addEventListener("click", revealAnswer);
   fontLargerBtn.addEventListener("click", increaseFont);
   fontSmallerBtn.addEventListener("click", decreaseFont);
 
