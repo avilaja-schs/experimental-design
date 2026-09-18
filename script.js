@@ -46,6 +46,57 @@
   // the same scenario twice in a row for the same topic.
   const lastIndexByTopic = {};
 
+  // ---- Escape a plain string for safe insertion into innerHTML ----
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // ---- Build color-coded HTML for the main "Generate Scenario" view ----
+  // Wraps every substring listed in scenario.ivHighlights in a blue span
+  // and every substring in scenario.dvHighlights in a red span. This is
+  // ONLY used here, on the main generator — the "Random Test Practice"
+  // quiz (quiz.js) always shows scenario.text as plain, uncolored text,
+  // since revealing the answer there would defeat the point of the quiz.
+  function buildHighlightedHTML(scenario) {
+    const text = scenario.text;
+    const ivTerms = Array.isArray(scenario.ivHighlights) ? scenario.ivHighlights : [];
+    const dvTerms = Array.isArray(scenario.dvHighlights) ? scenario.dvHighlights : [];
+
+    const terms = [];
+    ivTerms.forEach(function (t) { terms.push({ term: t, cls: "hl-iv" }); });
+    dvTerms.forEach(function (t) { terms.push({ term: t, cls: "hl-dv" }); });
+
+    if (terms.length === 0) {
+      return escapeHtml(text);
+    }
+
+    // Match longer phrases before shorter ones so overlapping substrings
+    // don't get split apart incorrectly.
+    terms.sort(function (a, b) { return b.term.length - a.term.length; });
+
+    function escapeRegex(s) {
+      return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
+
+    const pattern = terms.map(function (t) { return escapeRegex(t.term); }).join("|");
+    const re = new RegExp(pattern, "g");
+
+    let result = "";
+    let lastIndex = 0;
+    let match;
+    while ((match = re.exec(text)) !== null) {
+      const matchedText = match[0];
+      const termInfo = terms.find(function (t) { return t.term === matchedText; });
+      result += escapeHtml(text.slice(lastIndex, match.index));
+      result += '<span class="' + (termInfo ? termInfo.cls : "") + '">' + escapeHtml(matchedText) + "</span>";
+      lastIndex = match.index + matchedText.length;
+    }
+    result += escapeHtml(text.slice(lastIndex));
+    return result;
+  }
+
   // ---- Populate the dropdown from scenarios.js ----
   function populateDropdown() {
     const topics = Object.keys(scenarios);
@@ -91,7 +142,7 @@
     label.textContent = topic;
 
     const paragraph = document.createElement("p");
-    paragraph.textContent = currentText;
+    paragraph.innerHTML = buildHighlightedHTML(scenario);
 
     scenarioOutput.appendChild(label);
     scenarioOutput.appendChild(document.createElement("br"));
