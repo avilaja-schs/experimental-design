@@ -57,11 +57,12 @@
     });
   }
 
-  // ---- Pick a random scenario, avoiding an immediate repeat ----
+  // ---- Pick a random scenario object, avoiding an immediate repeat ----
+  // Each scenario is now an object: { text, iv, dv, ivChoices, dvChoices, explanation }
   function pickScenario(topic) {
     const list = scenarios[topic];
     if (!list || list.length === 0) {
-      return "No scenarios are available for this topic yet.";
+      return { text: "No scenarios are available for this topic yet." };
     }
     if (list.length === 1) {
       return list[0];
@@ -80,7 +81,8 @@
     if (!topic) {
       return;
     }
-    currentText = pickScenario(topic);
+    const scenario = pickScenario(topic);
+    currentText = scenario.text;
 
     scenarioOutput.innerHTML = "";
 
