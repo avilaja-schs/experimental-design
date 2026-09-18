@@ -8,59 +8,127 @@
 </head>
 <body>
 
-  <main class="page">
+  <div class="page-grid">
+
     <header class="page-header">
       <h1>Biology Experimental Scenario Generator</h1>
       <p class="subtitle">
         Pick a topic below, then read the scenario carefully. See if you can find
         the one factor that was changed, the one thing that was measured, and
-        the two groups being compared.
+        the two groups being compared. Then try "Random Test Practice" to test
+        yourself.
       </p>
     </header>
 
-    <section class="controls" aria-label="Scenario controls">
-      <div class="control-row">
-        <label for="topicSelect">Choose a topic:</label>
-        <select id="topicSelect" aria-describedby="topicHelp"></select>
-      </div>
-      <p id="topicHelp" class="help-text">
-        Select a topic from the list, then press "Generate Scenario."
-      </p>
+    <aside class="reference-panel" aria-label="Independent and dependent variable reference">
+      <h2>Quick Reference</h2>
 
-      <div class="button-row">
-        <button id="generateBtn" type="button" class="btn btn-primary">
-          Generate Scenario
-        </button>
-        <button id="readAloudBtn" type="button" class="btn btn-secondary" disabled>
-          🔊 Read Aloud
-        </button>
-        <button id="copyBtn" type="button" class="btn btn-secondary" disabled>
-          📋 Copy Text
-        </button>
+      <div class="ref-term">
+        <h3>Independent Variable (IV)</h3>
+        <p>The one factor a scientist purposely changes or controls in an experiment, to see what effect it has.</p>
       </div>
 
-      <div class="button-row font-controls" aria-label="Text size controls">
-        <span class="font-label">Text size:</span>
-        <button id="fontSmallerBtn" type="button" class="btn btn-small" aria-label="Decrease text size">A−</button>
-        <button id="fontLargerBtn" type="button" class="btn btn-small" aria-label="Increase text size">A+</button>
+      <div class="ref-term">
+        <h3>Dependent Variable (DV)</h3>
+        <p>The factor a scientist measures or observes. It may change <em>because of</em> the independent variable.</p>
       </div>
-    </section>
 
-    <section class="output-section" aria-label="Generated scenario">
-      <div id="scenarioOutput" class="scenario-box" aria-live="polite">
-        <p class="placeholder">
-          Your scenario will appear here. Choose a topic and click
-          "Generate Scenario" to begin.
+      <div class="ref-formula">
+        <span class="ref-formula-label">Hypothesis format</span>
+        <p>If <strong>(IV)</strong>, then <strong>(DV)</strong>.</p>
+      </div>
+    </aside>
+
+    <main class="main-column">
+
+      <section class="controls" aria-label="Scenario controls">
+        <div class="control-row">
+          <label for="topicSelect">Choose a topic:</label>
+          <select id="topicSelect" aria-describedby="topicHelp"></select>
+        </div>
+        <p id="topicHelp" class="help-text">
+          Select a topic from the list, then press "Generate Scenario."
         </p>
-      </div>
-    </section>
+
+        <div class="button-row">
+          <button id="generateBtn" type="button" class="btn btn-primary">
+            Generate Scenario
+          </button>
+          <button id="readAloudBtn" type="button" class="btn btn-secondary" disabled>
+            🔊 Read Aloud
+          </button>
+          <button id="copyBtn" type="button" class="btn btn-secondary" disabled>
+            📋 Copy Text
+          </button>
+        </div>
+
+        <div class="button-row font-controls" aria-label="Text size controls">
+          <span class="font-label">Text size:</span>
+          <button id="fontSmallerBtn" type="button" class="btn btn-small" aria-label="Decrease text size">A−</button>
+          <button id="fontLargerBtn" type="button" class="btn btn-small" aria-label="Increase text size">A+</button>
+        </div>
+      </section>
+
+      <section class="output-section" aria-label="Generated scenario">
+        <div id="scenarioOutput" class="scenario-box" aria-live="polite">
+          <p class="placeholder">
+            Your scenario will appear here. Choose a topic and click
+            "Generate Scenario" to begin.
+          </p>
+        </div>
+      </section>
+
+      <section class="quiz-launch">
+        <button id="randomTestBtn" type="button" class="btn btn-quiz">
+          🎯 Random Test Practice
+        </button>
+        <p class="help-text">
+          Get a random scenario from any topic, then pick the independent and
+          dependent variable from a list of choices.
+        </p>
+      </section>
+
+      <section id="quizPanel" class="quiz-panel" hidden aria-label="Random test practice">
+        <span id="quizTopicLabel" class="scenario-topic-label"></span>
+        <p id="quizScenarioText" class="quiz-scenario-text"></p>
+
+        <div class="quiz-question">
+          <label for="ivSelect">What is the <strong>independent variable (IV)</strong>?</label>
+          <select id="ivSelect"></select>
+        </div>
+
+        <div class="quiz-question">
+          <label for="dvSelect">What is the <strong>dependent variable (DV)</strong>?</label>
+          <select id="dvSelect"></select>
+        </div>
+
+        <p id="quizPrompt" class="quiz-prompt-note" role="alert"></p>
+
+        <div class="button-row">
+          <button id="submitAnswerBtn" type="button" class="btn btn-primary">
+            Submit Answer
+          </button>
+          <button id="nextQuestionBtn" type="button" class="btn btn-secondary" hidden>
+            Try Another Question
+          </button>
+        </div>
+
+        <div id="quizFeedback" class="quiz-feedback" hidden aria-live="polite"></div>
+      </section>
+
+    </main>
 
     <footer class="page-footer">
       <p>Biology Class Tool &mdash; select a topic to practice identifying experimental design.</p>
     </footer>
-  </main>
+
+  </div>
+
+  <div id="flashOverlay" class="flash-overlay" aria-hidden="true"></div>
+  <canvas id="confettiCanvas" aria-hidden="true"></canvas>
 
   <script src="scenarios.js"></script>
   <script src="script.js"></script>
+  <script src="quiz.js"></script>
 </body>
 </html>
