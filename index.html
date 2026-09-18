@@ -60,6 +60,9 @@
           <button id="copyBtn" type="button" class="btn btn-secondary" disabled>
             📋 Copy Text
           </button>
+          <button id="revealBtn" type="button" class="btn btn-reveal" disabled>
+            👀 Reveal IV &amp; DV
+          </button>
         </div>
 
         <div class="button-row font-controls" aria-label="Text size controls">
@@ -79,6 +82,12 @@
             Your scenario will appear here. Choose a topic and click
             "Generate Scenario" to begin.
           </p>
+        </div>
+
+        <div id="revealExplanation" class="reveal-explanation" hidden aria-live="polite">
+          <p><span class="hl-iv">Independent Variable (IV)</span>: <span id="revealIvText"></span></p>
+          <p><span class="hl-dv">Dependent Variable (DV)</span>: <span id="revealDvText"></span></p>
+          <p id="revealExplanationText" class="reveal-explanation-text"></p>
         </div>
       </section>
 
