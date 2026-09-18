@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biology Experimental Scenario Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="page">
+    <header class="page-header">
+      <h1>Biology Experimental Scenario Generator</h1>
+      <p class="subtitle">
+        Pick a topic below, then read the scenario carefully. See if you can find
+        the one factor that was changed, the one thing that was measured, and
+        the two groups being compared.
+      </p>
+    </header>
+
+    <section class="controls" aria-label="Scenario controls">
+      <div class="control-row">
+        <label for="topicSelect">Choose a topic:</label>
+        <select id="topicSelect" aria-describedby="topicHelp"></select>
+      </div>
+      <p id="topicHelp" class="help-text">
+        Select a topic from the list, then press "Generate Scenario."
+      </p>
+
+      <div class="button-row">
+        <button id="generateBtn" type="button" class="btn btn-primary">
+          Generate Scenario
+        </button>
+        <button id="readAloudBtn" type="button" class="btn btn-secondary" disabled>
+          🔊 Read Aloud
+        </button>
+        <button id="copyBtn" type="button" class="btn btn-secondary" disabled>
+          📋 Copy Text
+        </button>
+      </div>
+
+      <div class="button-row font-controls" aria-label="Text size controls">
+        <span class="font-label">Text size:</span>
+        <button id="fontSmallerBtn" type="button" class="btn btn-small" aria-label="Decrease text size">A−</button>
+        <button id="fontLargerBtn" type="button" class="btn btn-small" aria-label="Increase text size">A+</button>
+      </div>
+    </section>
+
+    <section class="output-section" aria-label="Generated scenario">
+      <div id="scenarioOutput" class="scenario-box" aria-live="polite">
+        <p class="placeholder">
+          Your scenario will appear here. Choose a topic and click
+          "Generate Scenario" to begin.
+        </p>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <p>Biology Class Tool &mdash; select a topic to practice identifying experimental design.</p>
+    </footer>
+  </main>
+
+  <script src="scenarios.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
