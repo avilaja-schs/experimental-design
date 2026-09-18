@@ -21,6 +21,8 @@
   --color-iv-highlight-bg: rgba(21, 84, 214, 0.16);
   --color-dv-highlight: #8e1c1c;
   --color-dv-highlight-bg: rgba(198, 40, 40, 0.16);
+  --color-reveal: #b8860b;
+  --color-reveal-dark: #8a640a;
   --font-base-size: 19px;
   --radius: 10px;
 }
@@ -212,6 +214,15 @@ button:focus {
   background: #e0ebe3;
 }
 
+.btn-reveal {
+  background: var(--color-reveal);
+  color: #fff;
+}
+
+.btn-reveal:hover:not(:disabled) {
+  background: var(--color-reveal-dark);
+}
+
 .output-section {
   margin-bottom: 24px;
 }
@@ -299,6 +310,27 @@ button:focus {
   font-weight: 700;
   padding: 1px 4px;
   border-radius: 4px;
+}
+
+.reveal-explanation {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 6px solid var(--color-reveal);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  margin-top: 14px;
+}
+
+.reveal-explanation p {
+  margin: 0 0 10px;
+}
+
+.reveal-explanation p:last-child {
+  margin-bottom: 0;
+}
+
+.reveal-explanation-text {
+  color: #333;
 }
 
 .page-footer {
