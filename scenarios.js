@@ -5,7 +5,12 @@
 //
 // Scenarios are written short and direct (roughly an advanced 8th
 // grade / early 9th grade reading level) so EL and Special Education
-// students can access them independently.
+// students can access them independently. Each scenario names the
+// measurement being taken with an explicit keyword ("measures",
+// "collects data on") and about half open with that measurement
+// sentence FIRST and the groups/setup SECOND (the rest do the
+// reverse), so students can't just assume "whatever is mentioned
+// last is the IV."
 //
 // Each topic is a list of scenario objects with:
 //   text         - the scenario paragraph (no labeled IV/DV/groups)
@@ -21,7 +26,7 @@
 const scenarios = {
   "Animals": [
     {
-      "text": "Ten pillbugs sit in a container with a dry paper towel, and ten more sit in an identical container with a damp paper towel. After twenty minutes, the student counts how many pillbugs are moving versus resting in each container.",
+      "text": "The student collects data on how many pillbugs are moving versus resting in each container. Ten pillbugs sit in a container with a dry paper towel, and ten more sit in an identical container with a damp paper towel, and the check happens after twenty minutes.",
       "iv": "Whether the paper towel was dry or damp",
       "dv": "How many pillbugs were active (moving) versus resting",
       "ivChoices": [
@@ -39,7 +44,7 @@ const scenarios = {
       "explanation": "The factor that was changed on purpose was the moisture of the paper towel (dry vs. damp) — that's the independent variable. What was measured, and could change as a result, was how many pillbugs were moving versus resting — that's the dependent variable. The container size and observation time were kept the same in both containers, so they can't be the answer."
     },
     {
-      "text": "Five crickets live in a mesh enclosure at room temperature, and five more live in an identical enclosure warmed with a heating pad. After the crickets settle, the student counts each enclosure's chirps per minute.",
+      "text": "Five crickets live in a mesh enclosure at room temperature, and five more live in an identical enclosure warmed with a heating pad. After the crickets settle, the student measures the number of chirps per minute in each enclosure.",
       "iv": "The temperature of the cricket enclosure",
       "dv": "The number of chirps per minute",
       "ivChoices": [
@@ -57,7 +62,7 @@ const scenarios = {
       "explanation": "Temperature was the one thing purposely changed between the two enclosures, making it the independent variable. The chirp count is what was measured to see if it changed, making it the dependent variable. Bedding, food, water, and settling time were identical in both enclosures."
     },
     {
-      "text": "One aquarium holds water at room temperature, and an identical aquarium holds water warmed slightly with a heater. After the fish adjust, the student counts how many times each fish's gill covers open and close in one minute.",
+      "text": "The student measures how many times each fish's gill covers open and close in one minute. One aquarium holds water at room temperature, and an identical aquarium holds water warmed slightly with a heater, and the fish are given time to adjust before counting begins.",
       "iv": "The temperature of the aquarium water",
       "dv": "The number of times the gill covers opened and closed per minute",
       "ivChoices": [
@@ -75,7 +80,7 @@ const scenarios = {
       "explanation": "Water temperature was the factor changed on purpose, so it's the independent variable. Gill movement count is what was measured, so it's the dependent variable. Tank size, number of fish, lighting, and adjustment time were the same for both tanks."
     },
     {
-      "text": "One tray has a smooth plastic bottom, and an identical tray has a rough sandpaper bottom, each holding the same number of snails. The student times how long each snail takes to crawl ten centimeters across its tray.",
+      "text": "One tray has a smooth plastic bottom, and an identical tray has a rough sandpaper bottom, each holding the same number of snails. The student measures how long each snail takes to crawl ten centimeters across its tray.",
       "iv": "The texture of the tray's surface (smooth or rough)",
       "dv": "The time it took each snail to travel 10 centimeters",
       "ivChoices": [
@@ -93,7 +98,7 @@ const scenarios = {
       "explanation": "The surface texture was deliberately changed between the two trays, so it's the independent variable. Travel time is what was measured, making it the dependent variable. The food, number of snails, lighting, and temperature stayed the same in both trays."
     },
     {
-      "text": "A drop of plain water sits on a card near an ant trail, and a drop of sugar water sits on an identical card nearby. Every two minutes, the student counts how many ants gather at each drop.",
+      "text": "The student collects data on how many ants gather at a drop of liquid every two minutes. A drop of plain water sits on a card near an ant trail, and a drop of sugar water sits on an identical card nearby.",
       "iv": "Whether the drop was plain water or sugar water",
       "dv": "The number of ants that gathered at the drop",
       "ivChoices": [
@@ -111,7 +116,7 @@ const scenarios = {
       "explanation": "The type of liquid (plain water vs. sugar water) was the factor changed on purpose, making it the independent variable. The number of ants that showed up is what was measured, making it the dependent variable. Time of day, card type, and distance were kept as similar as possible."
     },
     {
-      "text": "One group of crickets gets lettuce, and an identical group gets potato slices. After twenty-four hours, the student weighs the remaining food to see how much each group ate.",
+      "text": "One group of crickets gets lettuce, and an identical group gets potato slices. After twenty-four hours, the student measures how much food was eaten by weighing what remains.",
       "iv": "The type of food given to the crickets (lettuce or potato)",
       "dv": "The amount of food eaten (weight of food remaining)",
       "ivChoices": [
@@ -129,7 +134,7 @@ const scenarios = {
       "explanation": "The type of food offered is the factor changed on purpose, making it the independent variable. How much food was eaten (by weight) is what was measured, making it the dependent variable. The number of crickets, container size, and observation time were the same for both groups."
     },
     {
-      "text": "One arm gets sprayed with mosquito repellent, and the other arm stays unsprayed. After two hours outside, the student counts the mosquito bites on each arm.",
+      "text": "The student measures the number of mosquito bites on each arm after two hours outside. One arm gets sprayed with mosquito repellent, and the other arm stays unsprayed.",
       "iv": "Whether the arm was sprayed with mosquito repellent",
       "dv": "The number of mosquito bites",
       "ivChoices": [
@@ -149,7 +154,7 @@ const scenarios = {
   ],
   "Makeup & Skincare": [
     {
-      "text": "One apple slice gets a thin layer of lip balm, and an identical slice stays untreated. Both sit out for two hours while the student weighs each slice every twenty minutes to track moisture loss.",
+      "text": "The student measures the change in mass of each apple slice every twenty minutes. One apple slice gets a thin layer of lip balm, and an identical slice stays untreated, and both sit out for two hours.",
       "iv": "Whether lip balm was applied to the apple slice",
       "dv": "The change in mass of the apple slice over time",
       "ivChoices": [
@@ -167,7 +172,7 @@ const scenarios = {
       "explanation": "Applying lip balm (or not) was the factor changed on purpose, so it's the independent variable. The mass lost from each slice is what was measured, so it's the dependent variable. Slice size, plate type, and location were the same for both."
     },
     {
-      "text": "One dish of UV color-changing beads gets covered with sunscreen, and an identical dish stays uncovered. Both sit in direct sunlight while the student rates each dish's bead color every two minutes.",
+      "text": "One dish of UV color-changing beads gets covered with sunscreen, and an identical dish stays uncovered. Both sit in direct sunlight while the student measures the beads' color change every two minutes.",
       "iv": "Whether sunscreen was applied over the UV beads",
       "dv": "The color rating of the beads over time",
       "ivChoices": [
@@ -185,7 +190,7 @@ const scenarios = {
       "explanation": "Whether sunscreen covered the beads was the factor changed on purpose, making it the independent variable. The color rating (how much the beads changed color) is what was measured, making it the dependent variable. Dish type, location, and timing were kept the same."
     },
     {
-      "text": "One strand of hair gets sprayed with hairspray, and an identical strand stays untreated. After both dry, the student hangs paper clips on each strand's end and counts how many it holds before bending.",
+      "text": "The student measures how many paper clips each hair strand can support before bending. One strand of hair gets sprayed with hairspray, and an identical strand stays untreated, and both are given time to dry first.",
       "iv": "Whether the hair strand was sprayed with hairspray",
       "dv": "The number of paper clips the strand could support",
       "ivChoices": [
@@ -203,7 +208,7 @@ const scenarios = {
       "explanation": "Whether the strand was sprayed was the factor changed on purpose, making it the independent variable. The number of paper clips it could hold is what was measured, making it the dependent variable. Strand length and drying time were the same for both."
     },
     {
-      "text": "One nail polish swatch sits near a small fan on low speed, and an identical swatch sits away from any moving air. The student checks both swatches every thirty seconds to see when each stops smudging.",
+      "text": "One nail polish swatch sits near a small fan on low speed, and an identical swatch sits away from any moving air. The student measures how long the nail polish takes to stop smudging on each swatch.",
       "iv": "Whether the swatch was placed near moving air (a fan)",
       "dv": "How long the nail polish took to stop smudging",
       "ivChoices": [
@@ -221,7 +226,7 @@ const scenarios = {
       "explanation": "Whether air was moving across the swatch was the factor changed on purpose, making it the independent variable. Drying time is what was measured, making it the dependent variable. The polish brand, number of coats, and swatch card were identical."
     },
     {
-      "text": "One line is drawn with regular eyeliner, and an identical line is drawn with waterproof eyeliner. After both dry, the student drops water on each line and measures how far each one smears.",
+      "text": "The student measures how far each line smears after water is added. One line is drawn with regular eyeliner, and an identical line is drawn with waterproof eyeliner, and both are allowed to dry first.",
       "iv": "The type of eyeliner used (regular or waterproof)",
       "dv": "How far the line smeared after water was added",
       "ivChoices": [
@@ -241,7 +246,7 @@ const scenarios = {
   ],
   "Sleep": [
     {
-      "text": "Some student volunteers slept less than six hours last night, and others slept eight or more hours. Each volunteer catches a dropped ruler three times, and the class records how far it falls before being caught.",
+      "text": "The class measures how far a dropped ruler falls before being caught, in three trials per volunteer. Some student volunteers slept less than six hours last night, and others slept eight or more hours.",
       "iv": "The amount of sleep the volunteer got the night before",
       "dv": "The distance the ruler fell before being caught",
       "ivChoices": [
@@ -259,7 +264,7 @@ const scenarios = {
       "explanation": "Hours of sleep is the factor being compared between the two groups, making it the independent variable. Reaction distance (how far the ruler fell) is what was measured, making it the dependent variable. Lighting, number of trials, and room conditions were the same for everyone."
     },
     {
-      "text": "Some student volunteers slept less than six hours last night, and others slept eight or more. Each volunteer studies the same list of fifteen words for thirty seconds, then writes down as many as they remember.",
+      "text": "Some student volunteers slept less than six hours last night, and others slept eight or more. Each volunteer studies the same list of fifteen words for thirty seconds, and the class measures how many words each person correctly recalls.",
       "iv": "The amount of sleep the volunteer got the night before",
       "dv": "The number of words correctly recalled",
       "ivChoices": [
@@ -277,7 +282,7 @@ const scenarios = {
       "explanation": "Hours of sleep is what separated the two groups, making it the independent variable. The number of words remembered is what was measured, making it the dependent variable. The list itself, display time, lighting, and noise level were the same for everyone."
     },
     {
-      "text": "Some student volunteers slept less than six hours last night, and others slept seven or more. Each volunteer has three minutes to solve as many problems as possible on the same thirty-problem math worksheet.",
+      "text": "The class measures how many problems each volunteer solves correctly in three minutes on the same thirty-problem math worksheet. Some student volunteers slept less than six hours last night, and others slept seven or more.",
       "iv": "The amount of sleep the volunteer got the night before",
       "dv": "The number of correctly solved math problems",
       "ivChoices": [
@@ -295,7 +300,7 @@ const scenarios = {
       "explanation": "Hours of sleep is the factor being compared, making it the independent variable. The number of correct answers is what was measured, making it the dependent variable. The worksheet, time limit, and working conditions were identical for both groups."
     },
     {
-      "text": "Some student volunteers slept less than six hours last night, and others slept eight or more. Each volunteer stands on one foot with eyes closed, and a partner times how long they balance.",
+      "text": "Some student volunteers slept less than six hours last night, and others slept eight or more. Each volunteer stands on one foot with eyes closed, and a partner measures how many seconds they balance before losing it.",
       "iv": "The amount of sleep the volunteer got the night before",
       "dv": "The number of seconds the volunteer balanced before losing it",
       "ivChoices": [
@@ -313,7 +318,7 @@ const scenarios = {
       "explanation": "Hours of sleep is what separated the two groups, making it the independent variable. Balance time is what was measured, making it the dependent variable. The flooring, number of attempts, and conditions were the same for everyone."
     },
     {
-      "text": "Some student volunteers slept less than six hours last night, and others slept eight or more. Each volunteer has four minutes to circle the twenty errors hidden in the same paragraph.",
+      "text": "The class measures how many of the twenty hidden errors each volunteer correctly identifies in four minutes. Some student volunteers slept less than six hours last night, and others slept eight or more.",
       "iv": "The amount of sleep the volunteer got the night before",
       "dv": "The number of errors correctly identified",
       "ivChoices": [
@@ -333,7 +338,7 @@ const scenarios = {
   ],
   "Farm & Agriculture": [
     {
-      "text": "Five cups of bean seeds get watered with a mix of fertilizer and water, and five identical cups get plain water on the same schedule. Every three days, the student measures each seedling's height.",
+      "text": "Every three days, the student measures the height of each bean seedling. Five cups of seeds get watered with a mix of fertilizer and water, and five identical cups get plain water on the same schedule.",
       "iv": "Whether the water contained fertilizer",
       "dv": "The height of the bean seedlings",
       "ivChoices": [
@@ -351,7 +356,7 @@ const scenarios = {
       "explanation": "Whether fertilizer was added is the factor changed on purpose, making it the independent variable. Seedling height is what was measured, making it the dependent variable. Cup type, soil amount, sunlight, and watering schedule were the same for all ten cups."
     },
     {
-      "text": "Six pots of radish seeds get two tablespoons of water daily, and six identical pots get one tablespoon daily. After two weeks, the student measures each plant's root length.",
+      "text": "Six pots of radish seeds get two tablespoons of water daily, and six identical pots get one tablespoon daily. After two weeks, the student measures the length of each plant's root.",
       "iv": "The amount of water given each day",
       "dv": "The length of the radish root",
       "ivChoices": [
@@ -369,7 +374,7 @@ const scenarios = {
       "explanation": "The daily amount of water is the factor that was changed on purpose, making it the independent variable. Root length is what was measured, making it the dependent variable. Soil type, pot type, and light source were identical for all twelve pots."
     },
     {
-      "text": "Twenty corn seeds are planted in a tray of sand, and twenty more are planted in an identical tray of potting soil. Each day, the student counts how many seeds have sprouted in each tray.",
+      "text": "Each day, the student collects data on how many seeds have sprouted in each tray. Twenty corn seeds are planted in a tray of sand, and twenty more are planted in an identical tray of potting soil.",
       "iv": "The type of soil used (sand or potting soil)",
       "dv": "The number of seeds that sprouted",
       "ivChoices": [
@@ -387,7 +392,7 @@ const scenarios = {
       "explanation": "Soil type is the factor changed on purpose, making it the independent variable. The number of seeds that sprouted is what was measured, making it the dependent variable. The number of seeds planted, watering, sunlight, and planting depth were the same for both trays."
     },
     {
-      "text": "Six lettuce seedlings sit under a lamp providing eight hours of light daily, and six identical seedlings sit under a lamp providing fourteen hours of light. Every four days, the student measures each seedling's height.",
+      "text": "Six lettuce seedlings sit under a lamp providing eight hours of light daily, and six identical seedlings sit under a lamp providing fourteen hours of light. Every four days, the student measures the height of each seedling.",
       "iv": "The number of hours of light provided per day",
       "dv": "The height of the lettuce seedlings",
       "ivChoices": [
@@ -405,7 +410,7 @@ const scenarios = {
       "explanation": "Hours of light per day is the factor changed on purpose, making it the independent variable. Seedling height is what was measured, making it the dependent variable. Soil type, cups, temperature, and watering were the same for both groups."
     },
     {
-      "text": "Six tomato seedlings get watered with compost tea twice a week, and six identical seedlings get plain water on the same schedule. Once a week, the student measures each seedling's height.",
+      "text": "Once a week, the student measures the height of each tomato seedling. Six seedlings get watered with compost tea twice a week, and six identical seedlings get plain water on the same schedule.",
       "iv": "Whether the seedlings were watered with compost tea or plain water",
       "dv": "The height of the tomato seedlings",
       "ivChoices": [
@@ -423,7 +428,7 @@ const scenarios = {
       "explanation": "The watering solution (compost tea vs. plain water) is the factor changed on purpose, making it the independent variable. Seedling height is what was measured, making it the dependent variable. Pot type, soil, sunlight, and watering frequency were the same for all twelve seedlings."
     },
     {
-      "text": "One cow receives a growth hormone mixed into its feed, and an identical cow receives no hormone. After two years, researchers weigh both cows.",
+      "text": "One cow receives a growth hormone mixed into its feed, and an identical cow receives no hormone. After two years, researchers measure the weight of each cow.",
       "iv": "Whether the cow received growth hormone",
       "dv": "The weight of the cow after two years",
       "ivChoices": [
@@ -443,7 +448,7 @@ const scenarios = {
   ],
   "Social Media & Technology": [
     {
-      "text": "Some student volunteers scroll through social media for ten minutes, and others sit quietly with no phone for the same time. Before and after, the class measures each volunteer's heart rate.",
+      "text": "The class measures each volunteer's heart rate before and after a ten-minute activity. Some student volunteers scroll through social media for that time, and others sit quietly with no phone.",
       "iv": "Whether the volunteer scrolled social media or sat quietly",
       "dv": "The change in heart rate",
       "ivChoices": [
@@ -461,7 +466,7 @@ const scenarios = {
       "explanation": "The activity (scrolling vs. sitting quietly) is the factor changed on purpose, making it the independent variable. The change in heart rate is what was measured, making it the dependent variable. The room, device, and time length were the same for both groups."
     },
     {
-      "text": "Some student volunteers spend fifteen minutes scrolling social media, and others sit quietly with no phone for the same time. Afterward, each volunteer has four minutes to circle errors in the same paragraph.",
+      "text": "Some student volunteers spend fifteen minutes scrolling social media, and others sit quietly with no phone for the same time. Afterward, the class measures how many errors each volunteer correctly finds in the same paragraph in four minutes.",
       "iv": "Whether the volunteer scrolled social media or sat quietly beforehand",
       "dv": "The number of errors correctly identified",
       "ivChoices": [
@@ -479,7 +484,7 @@ const scenarios = {
       "explanation": "The activity beforehand (social media vs. sitting quietly) is the factor changed on purpose, making it the independent variable. The number of errors found is what was measured, making it the dependent variable. The paragraph and time limit were identical for both groups."
     },
     {
-      "text": "Some student volunteers spend ten minutes browsing social media, and others spend ten minutes solving a word puzzle on paper. Afterward, each volunteer studies a word list and tries to recall it.",
+      "text": "Afterward, the class measures how many words each volunteer correctly recalls from a studied list. Some student volunteers spend ten minutes browsing social media beforehand, and others spend ten minutes solving a word puzzle on paper.",
       "iv": "Whether the volunteer used social media or solved a word puzzle beforehand",
       "dv": "The number of words correctly recalled",
       "ivChoices": [
@@ -497,7 +502,7 @@ const scenarios = {
       "explanation": "The activity beforehand is the factor changed on purpose, making it the independent variable. The number of words remembered is what was measured, making it the dependent variable. The word list, display time, and room were the same for both groups."
     },
     {
-      "text": "Some student volunteers spend twelve minutes scrolling social media, and others spend twelve minutes reading a printed magazine. Before and after, each volunteer rates their mood on a scale from one to ten.",
+      "text": "Some student volunteers spend twelve minutes scrolling social media, and others spend twelve minutes reading a printed magazine. Before and after, the class measures each volunteer's self-rated mood on a scale from one to ten.",
       "iv": "Whether the volunteer used social media or read a magazine",
       "dv": "The change in the volunteer's self-rated mood",
       "ivChoices": [
@@ -515,7 +520,7 @@ const scenarios = {
       "explanation": "The activity (social media vs. reading) is the factor changed on purpose, making it the independent variable. The change in mood rating is what was measured, making it the dependent variable. The activity length, room, and rating scale were the same for both groups."
     },
     {
-      "text": "Some student volunteers work on a word-search puzzle with a silent tablet nearby, and others work on the same puzzle with a tablet that buzzes every thirty seconds. The class times how long each volunteer takes to finish.",
+      "text": "The class measures how long it takes each volunteer to complete a word-search puzzle. Some volunteers work with a silent tablet nearby, and others work with a tablet that buzzes every thirty seconds.",
       "iv": "Whether the tablet sent frequent notifications",
       "dv": "The time it took to complete the word-search puzzle",
       "ivChoices": [
@@ -535,7 +540,7 @@ const scenarios = {
   ],
   "Food & Nutrition": [
     {
-      "text": "Half of a sliced apple gets dipped in lemon juice, and the other half gets dipped in plain water. Every fifteen minutes for an hour, the student rates how brown each slice has turned.",
+      "text": "Every fifteen minutes for an hour, the student measures how brown each apple slice has turned. Half of a sliced apple gets dipped in lemon juice, and the other half gets dipped in plain water.",
       "iv": "Whether the apple slice was dipped in lemon juice or plain water",
       "dv": "The browning rating (color) of the apple slice",
       "ivChoices": [
@@ -553,7 +558,7 @@ const scenarios = {
       "explanation": "The liquid used (lemon juice vs. plain water) is the factor changed on purpose, making it the independent variable. The browning rating is what was measured, making it the dependent variable. Slice size, plate type, and location were the same for both sets."
     },
     {
-      "text": "One bottle of warm water and yeast gets sugar added, and an identical bottle gets no sugar. A balloon covers each bottle's mouth, and the student measures each balloon's size every five minutes.",
+      "text": "One bottle of warm water and yeast gets sugar added, and an identical bottle gets no sugar. A balloon covers each bottle's mouth, and the student measures the size of each balloon every five minutes.",
       "iv": "Whether sugar was added to the yeast mixture",
       "dv": "The size (circumference) of the inflating balloon",
       "ivChoices": [
@@ -571,7 +576,7 @@ const scenarios = {
       "explanation": "Whether sugar was added is the factor changed on purpose, making it the independent variable. Balloon size is what was measured, making it the dependent variable. The amount of yeast, water temperature, and bottle type were the same for both."
     },
     {
-      "text": "One bottle of sugar and yeast gets warm water, and an identical bottle gets cold water. A balloon covers each bottle's mouth, and the student measures each balloon's size every five minutes.",
+      "text": "Every five minutes, the student measures the size of the balloon covering each bottle's mouth. One bottle of sugar and yeast gets warm water, and an identical bottle gets cold water.",
       "iv": "The temperature of the water used (warm or cold)",
       "dv": "The size (circumference) of the inflating balloon",
       "ivChoices": [
@@ -589,7 +594,7 @@ const scenarios = {
       "explanation": "Water temperature is the factor changed on purpose, making it the independent variable. Balloon size is what was measured, making it the dependent variable. The amount of sugar and yeast, and the bottle and balloon type, were the same for both."
     },
     {
-      "text": "One eggshell fragment sits in full-strength vinegar, and an identical fragment sits in diluted vinegar. Every twenty minutes, the student presses each fragment and rates how soft it has become.",
+      "text": "One eggshell fragment sits in full-strength vinegar, and an identical fragment sits in diluted vinegar. Every twenty minutes, the student measures how soft each fragment has become by pressing on it.",
       "iv": "The concentration of vinegar (full-strength or diluted)",
       "dv": "The softness rating of the eggshell",
       "ivChoices": [
@@ -607,7 +612,7 @@ const scenarios = {
       "explanation": "Vinegar concentration is the factor changed on purpose, making it the independent variable. The softness rating is what was measured, making it the dependent variable. Fragment size, room temperature, and covering were the same for both cups."
     },
     {
-      "text": "One bread slice gets sealed in a bag with added moisture, and an identical slice gets sealed in a dry bag. Each day for two weeks, the student estimates the mold coverage on each slice.",
+      "text": "Each day for two weeks, the student collects data on the percentage of each bread slice's surface covered in mold. One slice gets sealed in a bag with added moisture, and an identical slice gets sealed in a dry bag.",
       "iv": "Whether moisture was added to the storage bag",
       "dv": "The percentage of the bread's surface covered in mold",
       "ivChoices": [
@@ -645,7 +650,7 @@ const scenarios = {
   ],
   "Exercise & Fitness": [
     {
-      "text": "Some student volunteers do one minute of jumping jacks, and others sit quietly for the same minute. Before and after, the class measures each volunteer's heart rate.",
+      "text": "The class measures each volunteer's heart rate before and after one minute. Some volunteers do jumping jacks during that minute, and others sit quietly.",
       "iv": "Whether the volunteer did jumping jacks or sat quietly",
       "dv": "The change in heart rate",
       "ivChoices": [
@@ -663,7 +668,7 @@ const scenarios = {
       "explanation": "The activity (jumping jacks vs. sitting) is the factor changed on purpose, making it the independent variable. The change in heart rate is what was measured, making it the dependent variable. Room temperature, timing method, and activity length were the same for both groups."
     },
     {
-      "text": "Some student volunteers march in place while listening to slow, calm music, and others march while listening to fast, upbeat music. The class times how long each volunteer marches before stopping.",
+      "text": "Some student volunteers march in place while listening to slow, calm music, and others march while listening to fast, upbeat music. The class measures how many minutes each volunteer marches before stopping.",
       "iv": "The tempo of the music (slow or fast)",
       "dv": "How many minutes the volunteer marched before stopping",
       "ivChoices": [
@@ -681,7 +686,7 @@ const scenarios = {
       "explanation": "Music tempo is the factor changed on purpose, making it the independent variable. Marching time is what was measured, making it the dependent variable. The room, headphones, and instructions to stop when tired were the same for both groups."
     },
     {
-      "text": "Some student volunteers stretch for five minutes before a sit-and-reach test, and others sit quietly for five minutes instead. The class records how far each volunteer reaches on the test.",
+      "text": "The class measures how far each volunteer reaches on a sit-and-reach test. Some volunteers stretch for five minutes beforehand, and others sit quietly for five minutes instead.",
       "iv": "Whether the volunteer stretched before the test",
       "dv": "The distance reached on the sit-and-reach test",
       "ivChoices": [
@@ -699,7 +704,7 @@ const scenarios = {
       "explanation": "Whether stretching happened beforehand is the factor changed on purpose, making it the independent variable. Reach distance is what was measured, making it the dependent variable. The ruler, leg position, and five-minute period were the same for both groups."
     },
     {
-      "text": "Some student volunteers drink a cup of water fifteen minutes before doing jumping jacks, and others drink no water. The class times how long each volunteer lasts before needing to stop.",
+      "text": "Some student volunteers drink a cup of water fifteen minutes before doing jumping jacks, and others drink no water. The class measures how many minutes each volunteer lasts before needing to stop.",
       "iv": "Whether the volunteer drank water before the activity",
       "dv": "How many minutes the volunteer lasted doing jumping jacks",
       "ivChoices": [
@@ -717,7 +722,7 @@ const scenarios = {
       "explanation": "Whether water was consumed beforehand is the factor changed on purpose, making it the independent variable. How long the volunteer lasted is what was measured, making it the dependent variable. The resting room, rest period, and exercise type were the same for both groups."
     },
     {
-      "text": "Every volunteer squeezes a clothespin for thirty seconds, and the class records the count. Some volunteers then rest for two minutes before a second round, while others repeat it immediately with no rest.",
+      "text": "The class measures how many times each volunteer squeezes a clothespin in a second thirty-second round. Some volunteers rest for two minutes between rounds, while others repeat it immediately with no rest.",
       "iv": "Whether the volunteer got a rest period between rounds",
       "dv": "The number of squeezes completed in the second round",
       "ivChoices": [
@@ -755,7 +760,7 @@ const scenarios = {
   ],
   "Plants & Gardening": [
     {
-      "text": "One bean seedling sits under a lamp with a red filter, and an identical seedling sits under a lamp with no filter. Every three days, the student measures each seedling's height.",
+      "text": "Every three days, the student measures the height of each seedling. One bean seedling sits under a lamp with a red filter, and an identical seedling sits under a lamp with no filter.",
       "iv": "The color of light the seedling received (red filter or white light)",
       "dv": "The height of the seedling",
       "ivChoices": [
@@ -773,7 +778,7 @@ const scenarios = {
       "explanation": "The color of light is the factor changed on purpose, making it the independent variable. Seedling height is what was measured, making it the dependent variable. Pot, soil, watering, and hours of light per day were the same for both seedlings."
     },
     {
-      "text": "One bean seedling sits near a speaker playing music for two hours daily, and an identical seedling sits in a silent room. Every four days, the student measures each plant's height.",
+      "text": "One bean seedling sits near a speaker playing music for two hours daily, and an identical seedling sits in a silent room. Every four days, the student measures the height of each plant.",
       "iv": "Whether the plant was exposed to music",
       "dv": "The height of the plant",
       "ivChoices": [
@@ -791,7 +796,7 @@ const scenarios = {
       "explanation": "Whether music was played is the factor changed on purpose, making it the independent variable. Plant height is what was measured, making it the dependent variable. Distance from the window, pot, soil, and watering schedule were the same for both plants."
     },
     {
-      "text": "One potted plant gets watered only with tap water, and an identical plant gets watered only with distilled water. Once a week, the student counts each plant's healthy green leaves.",
+      "text": "Once a week, the student collects data on the number of healthy green leaves on each plant. One potted plant gets watered only with tap water, and an identical plant gets watered only with distilled water.",
       "iv": "The type of water used (tap or distilled)",
       "dv": "The number of healthy green leaves",
       "ivChoices": [
@@ -809,7 +814,7 @@ const scenarios = {
       "explanation": "The type of water is the factor changed on purpose, making it the independent variable. The number of healthy leaves is what was measured, making it the dependent variable. Amount of water, schedule, and plant species were the same for both."
     },
     {
-      "text": "One tomato seedling gets watered with an Epsom salt mixture, and an identical seedling gets plain water. Once a week, the student measures each plant's height.",
+      "text": "One tomato seedling gets watered with an Epsom salt mixture, and an identical seedling gets plain water. Once a week, the student measures the height of each plant.",
       "iv": "Whether Epsom salt was added to the water",
       "dv": "The height of the tomato seedling",
       "ivChoices": [
@@ -827,7 +832,7 @@ const scenarios = {
       "explanation": "Whether Epsom salt was added is the factor changed on purpose, making it the independent variable. Seedling height is what was measured, making it the dependent variable. Soil, pot, sunlight, and watering schedule were the same for both seedlings."
     },
     {
-      "text": "One marigold plant grows in soil mixed with coffee grounds, and an identical marigold grows in unchanged soil. Every five days, the student measures each plant's height.",
+      "text": "Every five days, the student measures the height of each marigold plant. One plant grows in soil mixed with coffee grounds, and an identical plant grows in unchanged soil.",
       "iv": "Whether coffee grounds were mixed into the soil",
       "dv": "The height of the marigold plant",
       "ivChoices": [
@@ -845,7 +850,7 @@ const scenarios = {
       "explanation": "Whether coffee grounds were added is the factor changed on purpose, making it the independent variable. Plant height is what was measured, making it the dependent variable. Pot type, watering, and location were the same for both marigolds."
     },
     {
-      "text": "One plant gets watered with water that was boiled in a microwave and then cooled, and an identical plant gets watered with plain tap water. After two weeks, the student measures each plant's height.",
+      "text": "One plant gets watered with water that was boiled in a microwave and then cooled, and an identical plant gets watered with plain tap water. After two weeks, the student measures the height of each plant.",
       "iv": "Whether the plant was watered with microwaved-and-cooled water or plain tap water",
       "dv": "The height of the plant",
       "ivChoices": [
@@ -865,7 +870,7 @@ const scenarios = {
   ],
   "Household Germs & Cleaning": [
     {
-      "text": "One volunteer uses hand sanitizer before touching a slice of bread, and another volunteer touches an identical slice without sanitizing. Each day for two weeks, the class estimates the mold on each slice.",
+      "text": "Each day for two weeks, the class collects data on the percentage of mold covering each bread slice. One volunteer uses hand sanitizer before touching a slice, and another volunteer touches an identical slice without sanitizing.",
       "iv": "Whether the volunteer used hand sanitizer before touching the bread",
       "dv": "The percentage of mold coverage on the bread",
       "ivChoices": [
@@ -883,7 +888,7 @@ const scenarios = {
       "explanation": "Whether sanitizer was used is the factor changed on purpose, making it the independent variable. Mold coverage is what was measured, making it the dependent variable. The loaf, surfaces touched beforehand, and storage conditions were the same for both slices."
     },
     {
-      "text": "One agar plate gets sprayed with disinfectant after being swabbed with bacteria, and an identical plate stays untreated. After forty-eight hours, the student counts the bacterial colonies on each plate.",
+      "text": "One agar plate gets sprayed with disinfectant after being swabbed with bacteria, and an identical plate stays untreated. After forty-eight hours, the student collects data on the number of bacterial colonies on each plate.",
       "iv": "Whether the agar plate was treated with disinfectant",
       "dv": "The number of visible bacterial colonies",
       "ivChoices": [
@@ -901,7 +906,7 @@ const scenarios = {
       "explanation": "Whether disinfectant was applied is the factor changed on purpose, making it the independent variable. The number of colonies is what was measured, making it the dependent variable. The countertop, swabbing method, and storage conditions were the same for both plates."
     },
     {
-      "text": "One volunteer washes their hands with soap and water, and another rinses with water only. Both press their fingertips onto identical agar plates, and the class counts colonies after forty-eight hours.",
+      "text": "The class collects data on the number of bacterial colonies that grow on each plate after forty-eight hours. One volunteer washes their hands with soap and water, and another rinses with water only, before both press their fingertips onto identical agar plates.",
       "iv": "Whether the volunteer washed with soap or rinsed with water only",
       "dv": "The number of visible bacterial colonies",
       "ivChoices": [
@@ -919,7 +924,7 @@ const scenarios = {
       "explanation": "The washing method (soap vs. water only) is the factor changed on purpose, making it the independent variable. The number of colonies is what was measured, making it the dependent variable. The prior activities, washing time, and storage conditions were the same for both volunteers."
     },
     {
-      "text": "One bread slice gets sprayed with a vinegar and water mix, and an identical slice stays unsprayed. Each day for two weeks, the student estimates the mold coverage on each slice.",
+      "text": "One bread slice gets sprayed with a vinegar and water mix, and an identical slice stays unsprayed. Each day for two weeks, the student measures the percentage of mold covering each slice.",
       "iv": "Whether the bread was sprayed with a vinegar mixture",
       "dv": "The percentage of mold coverage on the bread",
       "ivChoices": [
@@ -937,7 +942,7 @@ const scenarios = {
       "explanation": "Whether vinegar spray was applied is the factor changed on purpose, making it the independent variable. Mold coverage is what was measured, making it the dependent variable. The loaf, storage cabinet, and observation period were the same for both bags."
     },
     {
-      "text": "One desk section gets wiped with disinfectant and dries for the full recommended time before swabbing, and an identical section gets swabbed after only ten seconds of drying. The class compares bacterial colonies on each plate after forty-eight hours.",
+      "text": "The class measures the number of bacterial colonies on each plate after forty-eight hours. One desk section gets wiped with disinfectant and dries for the full recommended time before swabbing, and an identical section gets swabbed after only ten seconds of drying.",
       "iv": "The amount of time the disinfectant was left to dry before swabbing",
       "dv": "The number of visible bacterial colonies",
       "ivChoices": [
@@ -955,7 +960,7 @@ const scenarios = {
       "explanation": "The drying time before swabbing is the factor changed on purpose, making it the independent variable. The number of colonies is what was measured, making it the dependent variable. The desk, wipe brand, and storage conditions were the same for both sections."
     },
     {
-      "text": "Bacteria grow across a petri dish. A student sprays an antibiotic on half of the dish and leaves the other half untreated. After one week, the student counts the bacteria colonies on each side.",
+      "text": "Bacteria grow across a petri dish. A student sprays an antibiotic on half of the dish and leaves the other half untreated. After one week, the student measures the number of bacteria colonies on each side.",
       "iv": "Whether the antibiotic was sprayed on that half of the dish",
       "dv": "The number of bacteria colonies",
       "ivChoices": [
@@ -975,7 +980,7 @@ const scenarios = {
   ],
   "Music & Sound": [
     {
-      "text": "Some student volunteers complete a word-search puzzle while listening to slow, calm music, and others complete the same puzzle while listening to fast, upbeat music. The class times how long each volunteer takes to finish.",
+      "text": "The class measures how long it takes each volunteer to complete a word-search puzzle. Some volunteers listen to slow, calm music while working, and others listen to fast, upbeat music.",
       "iv": "The tempo of the music (slow or fast)",
       "dv": "The time it took to complete the word-search puzzle",
       "ivChoices": [
@@ -993,7 +998,7 @@ const scenarios = {
       "explanation": "Music tempo is the factor changed on purpose, making it the independent variable. Completion time is what was measured, making it the dependent variable. The desk, puzzle, room, and headphones were the same for both groups."
     },
     {
-      "text": "Some student volunteers study a word list in silence, and others study the identical list while soft instrumental music plays. Afterward, each volunteer tries to recall as many words as possible.",
+      "text": "Some student volunteers study a word list in silence, and others study the identical list while soft instrumental music plays. Afterward, the class measures how many words each volunteer correctly recalls.",
       "iv": "Whether music played in the background while studying",
       "dv": "The number of words correctly recalled",
       "ivChoices": [
@@ -1011,7 +1016,7 @@ const scenarios = {
       "explanation": "Whether background music played is the factor changed on purpose, making it the independent variable. The number of words remembered is what was measured, making it the dependent variable. The word list, display time, and time to write answers were the same for both groups."
     },
     {
-      "text": "Some student volunteers listen to an audio clip at low volume, and others listen to the identical clip at a louder volume. Before and after, the class measures each volunteer's heart rate.",
+      "text": "The class measures each volunteer's heart rate before and after listening to an audio clip. Some volunteers hear the clip at low volume, and others hear the identical clip at a louder volume.",
       "iv": "The volume of the audio clip (low or loud)",
       "dv": "The change in heart rate",
       "ivChoices": [
@@ -1029,7 +1034,7 @@ const scenarios = {
       "explanation": "Volume is the factor changed on purpose, making it the independent variable. The change in heart rate is what was measured, making it the dependent variable. The audio clip length, pulse-counting method, and room were the same for both groups."
     },
     {
-      "text": "Some student volunteers solve a math worksheet in a silent room, and others solve the identical worksheet in a room with background white noise. The class counts how many problems each volunteer solves correctly.",
+      "text": "Some student volunteers solve a math worksheet in a silent room, and others solve the identical worksheet in a room with background white noise. The class measures how many problems each volunteer solves correctly.",
       "iv": "Whether white noise played in the background",
       "dv": "The number of correctly solved math problems",
       "ivChoices": [
@@ -1047,7 +1052,7 @@ const scenarios = {
       "explanation": "Whether white noise played is the factor changed on purpose, making it the independent variable. The number of correct answers is what was measured, making it the dependent variable. The worksheet, time limit, temperature, and lighting were the same for both groups."
     },
     {
-      "text": "Some student volunteers catch a dropped ruler while listening to fast-paced music, and others catch it while listening to slow, calm music. The class records how far the ruler falls before being caught.",
+      "text": "The class measures how far a dropped ruler falls before being caught. Some volunteers catch the ruler while listening to fast-paced music, and others catch it while listening to slow, calm music.",
       "iv": "The type of music playing (fast-paced or calm)",
       "dv": "The distance the ruler fell before being caught",
       "ivChoices": [
