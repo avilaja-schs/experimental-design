@@ -7,6 +7,96 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<!-- ===== TOOL KIT v1 START (same block in every tool; only the data-* settings on #kit-bar change) =====
+     data-repo  = this tool's GitHub repo (for the teacher-only Edit code link)
+     data-adopt = the tool's own controls to move into the bar (CSS selectors); a selector ending in "+" also hides the spot it came from
+     data-dark  = tool (tool has its own dark button) | kit (bar adds one) | none (tool has no dark mode) | always (tool is always dark) -->
+<style id="kit-v1-css">
+#kit-bar { --kit-bg: #0a7584; --kit-ink: #ffffff; --kit-line: rgba(255,255,255,0.55); --kit-edit-bg: #ece3f7; --kit-edit-ink: #3b2160;
+  background: var(--kit-bg); color: var(--kit-ink); font-family: "Lexend", "Segoe UI", system-ui, sans-serif; font-size: 0.9rem; line-height: 1.3; text-align: left;
+  padding: max(8px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px)); box-sizing: border-box; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) #kit-bar:not([data-dark="none"]) { --kit-bg: #0e3a44; --kit-ink: #e2eff2; --kit-line: rgba(226,239,242,0.45); --kit-edit-bg: #3a2a55; --kit-edit-ink: #eadcff; } }
+:root[data-theme="dark"] #kit-bar:not([data-dark="none"]), #kit-bar[data-dark="always"] { --kit-bg: #0e3a44; --kit-ink: #e2eff2; --kit-line: rgba(226,239,242,0.45); --kit-edit-bg: #3a2a55; --kit-edit-ink: #eadcff; }
+#kit-bar * { box-sizing: border-box; }
+#kit-bar .kit-row { max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+#kit-bar .kit-home { color: var(--kit-ink); text-decoration: none; font-weight: 500; display: inline-flex; align-items: center; gap: 6px;
+  min-height: 34px; padding: 4px 10px; border-radius: 8px; border: 1px solid var(--kit-line); }
+#kit-bar .kit-home:hover { background: rgba(255,255,255,0.12); }
+#kit-bar .kit-spacer { flex: 1; }
+#kit-slot { display: contents; }
+#kit-bar button { background: transparent !important; color: var(--kit-ink) !important; border: 1px solid var(--kit-line) !important;
+  font: inherit !important; font-weight: 400 !important; min-height: 34px; padding: 4px 12px !important; border-radius: 8px !important; cursor: pointer; margin: 0 !important; box-shadow: none !important; }
+#kit-bar .kit-seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--kit-line); border-radius: 8px; overflow: hidden; background: transparent; margin: 0; padding: 0; }
+#kit-bar .kit-seg button { border: 0 !important; border-radius: 0 !important; }
+#kit-bar .kit-seg button + button { border-left: 1px solid var(--kit-line) !important; }
+#kit-bar .kit-seg [aria-pressed="true"] { background: var(--kit-ink) !important; color: var(--kit-bg) !important; font-weight: 500 !important; }
+#kit-bar .kit-edit { display: none; background: var(--kit-edit-bg); color: var(--kit-edit-ink); text-decoration: none; font-weight: 500;
+  min-height: 34px; padding: 6px 12px; border-radius: 8px; align-items: center; gap: 6px; }
+#kit-bar.kit-teacher .kit-edit { display: inline-flex; }
+#kit-bar a:focus-visible, #kit-bar button:focus-visible { outline: 3px solid #f4a23c !important; outline-offset: 2px; }
+@media print { #kit-bar { display: none; } }
+</style>
+<div id="kit-bar" data-repo="experimental-design" data-adopt="" data-dark="none">
+  <div class="kit-row">
+    <a class="kit-home" href="https://avilaja-schs.github.io/"><span aria-hidden="true">&#8592;</span> All tools</a>
+    <span class="kit-spacer"></span>
+    <span id="kit-slot"></span>
+    <a class="kit-edit" id="kit-edit" target="_blank" rel="noopener" title="Teacher only: opens this tool's code on GitHub"><span aria-hidden="true">&#9998;</span> Edit code</a>
+  </div>
+</div>
+<script id="kit-v1-js">
+(function () {
+  var KEY = "avila-teacher", CODE = "scavila", THEME = "avila-theme";
+  function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { return null; } }
+  var root = document.documentElement;
+  // kit dark button: apply the saved choice before the page draws
+  var barEarly = document.getElementById("kit-bar");
+  // stretch the bar edge to edge even when the tool's page has its own margins/padding
+  if (barEarly && document.body) {
+    var cs = getComputedStyle(document.body), n = function (v) { return parseFloat(v) || 0; };
+    var t = n(cs.marginTop) + n(cs.paddingTop), l = n(cs.marginLeft) + n(cs.paddingLeft), r = n(cs.marginRight) + n(cs.paddingRight);
+    if (t || l || r) barEarly.style.margin = (-t) + "px " + (-r) + "px " + t + "px " + (-l) + "px";
+  }
+  if (barEarly && barEarly.getAttribute("data-dark") === "kit") { var saved = store(THEME); if (saved === "dark" || saved === "light") root.setAttribute("data-theme", saved); }
+  function start() {
+    var bar = document.getElementById("kit-bar"); if (!bar) return;
+    var slot = document.getElementById("kit-slot");
+    document.getElementById("kit-edit").href = "https://github.com/avilaja-schs/" + bar.getAttribute("data-repo") + "/edit/main/index.html";
+    // move the tool's own controls into the bar; their click handlers come along with them
+    (bar.getAttribute("data-adopt") || "").split(/\s+/).forEach(function (entry) {
+      if (!entry) return;
+      var hideFrom = entry.slice(-1) === "+", sel = hideFrom ? entry.slice(0, -1) : entry, el;
+      try { el = document.querySelector(sel); } catch (e) { return; }
+      if (!el) return;
+      var from = el.parentElement;
+      if (el.tagName !== "BUTTON" && el.querySelectorAll("button").length > 1) el.classList.add("kit-seg");
+      slot.appendChild(el);
+      if (hideFrom && from && from !== document.body) from.style.display = "none";
+    });
+    if (bar.getAttribute("data-dark") === "kit") {
+      var b = document.createElement("button"); b.type = "button"; b.id = "kit-theme";
+      var isDark = function () { var t = root.getAttribute("data-theme"); return t ? t === "dark" : !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches); };
+      var label = function () { b.textContent = isDark() ? "\u2600 Light mode" : "\u263E Dark mode"; };
+      b.addEventListener("click", function () { var next = isDark() ? "light" : "dark"; root.setAttribute("data-theme", next); store(THEME, next); label(); });
+      label(); slot.insertBefore(b, slot.firstChild);
+    }
+    var on = store(KEY) === "1";
+    function show() { bar.classList.toggle("kit-teacher", on); }
+    show();
+    // typing the teacher code anywhere turns the Edit link on; typing it again turns it off
+    var typed = "";
+    document.addEventListener("keydown", function (e) {
+      if (!e.key || e.key.length !== 1) return;
+      typed = (typed + e.key.toLowerCase()).slice(-CODE.length);
+      if (typed === CODE) { on = !on; store(KEY, on ? "1" : null); typed = ""; show(); }
+    });
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();
+</script>
+<!-- ===== TOOL KIT v1 END ===== -->
+
+
 
   <div class="page-grid">
 
